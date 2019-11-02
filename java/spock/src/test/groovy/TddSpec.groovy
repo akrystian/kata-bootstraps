@@ -5,20 +5,12 @@ class TddSpec extends Specification {
 
 
   def 'testMultiplication'() {
-    given:
+    when:
     Dollar five = new Dollar(5)
 
-    when:
-    def result = five.times(2)
-
     then:
-    result.amount == 10
-
-    when:
-    result = five.times(3)
-
-    then:
-    result.amount == 15
+    new Dollar(10) == five.times(2)
+    new Dollar(15) == five.times(3)
   }
 
   def 'testEquality'() {
