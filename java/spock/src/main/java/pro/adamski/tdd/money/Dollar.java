@@ -10,4 +10,9 @@ public class Dollar {
     Dollar times(int multiplier) {
         return new Dollar(amount * multiplier);
     }
+
+    public boolean equals(Object oboject){
+        Dollar dollar = (Dollar) oboject;
+        return amount == dollar.amount;
+    }
 }

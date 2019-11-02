@@ -19,6 +19,15 @@ class TddSpec extends Specification {
 
     then:
     result.amount == 15
+  }
 
+  def 'testEquality'() {
+    when:
+    def equals = new Dollar(5).equals(new Dollar(5))
+    def notEquals = new Dollar(5).equals(new Dollar(6))
+
+    then:
+    equals
+    !notEquals
   }
 }
