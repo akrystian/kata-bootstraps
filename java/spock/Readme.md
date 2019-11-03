@@ -20,3 +20,7 @@ Przejrzysty kod, który działa, jest jednocześnie celem samym w sobie
 - doprowadzenie — za wszelką cenę — do zaliczenia testu,
 - stopniowe generalizowanie testowanego kodu drogą zamiany stałych na zmienne,
 - dopisywanie zaistniałych problemów do listy zamiast ich natychmiastowego rozwiązywania.
+
+# Granulacja TDD
+
+TDD. Małe kroki zbyt restrykcyjne? Zastosuj większe. Czujesz się trochę niepewnie? Zmniejsz krok. TDD to proces kontrolowany — raz tak, raz inaczej; nie istnieje ten jeden, jedyny, raz na zawsze właściwy krok.

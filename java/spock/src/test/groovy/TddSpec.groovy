@@ -38,4 +38,14 @@ class TddSpec extends Specification {
     !notEqualsFranc
     !notEqualsFrancDollar
   }
+
+  def 'testCurrency'() {
+    when:
+    def francCurrency = Money.franc(1).currency()
+    def dollarCurrency = Money.dollar(1).currency()
+
+    then:
+    francCurrency == 'CHF'
+    dollarCurrency == 'USD'
+  }
 }

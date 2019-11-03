@@ -1,14 +1,20 @@
 package pro.adamski.tdd.money;
 
 public abstract class Money {
-    protected int amount;
+    protected final int amount;
+    protected final String currency;
+
+    protected Money(int amount, String currency) {
+        this.amount = amount;
+        this.currency = currency;
+    }
 
     public static Dollar dollar(int amount){
-        return new Dollar(amount);
+        return new Dollar(amount, "USD");
     }
 
     public static Franc franc(int amount){
-        return new Franc(amount);
+        return new Franc(amount, "CHF");
     }
 
     public boolean equals(Object oboject){
@@ -17,4 +23,6 @@ public abstract class Money {
     }
 
     public abstract Money times(int amount);
+
+
 }
