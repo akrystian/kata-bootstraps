@@ -1,6 +1,6 @@
 package pro.adamski.tdd.money;
 
-public abstract class Money {
+public class Money {
     protected final int amount;
     protected final String currency;
 
@@ -17,12 +17,13 @@ public abstract class Money {
         return new Franc(amount, "CHF");
     }
 
-    public boolean equals(Object oboject){
-        Money dollar = (Money) oboject;
-        return amount == dollar.amount && getClass().equals(oboject.getClass());
+    public boolean equals(Object obj){
+        Money money = (Money) obj;
+        return amount == money.amount && currency.equals(money.currency);
     }
 
-    public abstract Money times(int amount);
-
+    public Money times(int amount){
+        return null;
+    }
 
 }

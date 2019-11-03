@@ -7,10 +7,18 @@ public class Franc extends Money {
     }
 
     public Money times(int multiplier) {
-        return Money.franc(amount * multiplier);
+        return new Money(amount * multiplier, currency);
     }
 
     public String currency() {
         return currency;
+    }
+
+    @Override
+    public String toString() {
+        return "Franc{" +
+                "amount=" + amount +
+                ", currency='" + currency + '\'' +
+                '}';
     }
 }

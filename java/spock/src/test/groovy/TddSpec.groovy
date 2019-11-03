@@ -48,4 +48,12 @@ class TddSpec extends Specification {
     francCurrency == 'CHF'
     dollarCurrency == 'USD'
   }
+
+  def 'testDifferentClassEquality'() {
+    when:
+    def result = new Money(1, "CHF").equals(new Franc(1, "CHF"))
+
+    then:
+    result
+  }
 }
