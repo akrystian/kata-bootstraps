@@ -29,6 +29,7 @@ class TddSpec extends Specification {
     def notEqualsDollar = new Dollar(5).equals(new Dollar(6))
     def equalsFranc = new Franc(5).equals(new Franc(5))
     def notEqualsFranc = new Franc(5).equals(new Franc(6))
+    def notEqualsFrancDollar = new Franc(5).equals(new Dollar(5))
 
 
     then:
@@ -36,5 +37,6 @@ class TddSpec extends Specification {
     !notEqualsDollar
     equalsFranc
     !notEqualsFranc
+    !notEqualsFrancDollar
   }
 }
