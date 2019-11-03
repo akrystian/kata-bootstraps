@@ -1,5 +1,6 @@
 import pro.adamski.tdd.money.Dollar
 import pro.adamski.tdd.money.Franc
+import pro.adamski.tdd.money.Money
 import spock.lang.Specification
 
 class TddSpec extends Specification {
@@ -7,7 +8,7 @@ class TddSpec extends Specification {
 
   def 'testMultiplication'() {
     when:
-    Dollar five = new Dollar(5)
+    Money five = new Dollar(5)
 
     then:
     new Dollar(10) == five.times(2)
@@ -16,7 +17,7 @@ class TddSpec extends Specification {
 
   def 'testFrancMultiplication'() {
     when:
-    Franc five = new Franc(5)
+    Money five = new Franc(5)
 
     then:
     new Franc(10) == five.times(2)
@@ -24,11 +25,16 @@ class TddSpec extends Specification {
 
   def 'testEquality'() {
     when:
-    def equals = new Dollar(5).equals(new Dollar(5))
-    def notEquals = new Dollar(5).equals(new Dollar(6))
+    def equalsDollar = new Dollar(5).equals(new Dollar(5))
+    def notEqualsDollar = new Dollar(5).equals(new Dollar(6))
+    def equalsFranc = new Franc(5).equals(new Franc(5))
+    def notEqualsFranc = new Franc(5).equals(new Franc(6))
+
 
     then:
-    equals
-    !notEquals
+    equalsDollar
+    !notEqualsDollar
+    equalsFranc
+    !notEqualsFranc
   }
 }
