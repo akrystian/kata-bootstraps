@@ -32,6 +32,19 @@ public class ThingTest {
     }
 
     @Test
+    public void shouldDieOfUnderpopulation() {
+        //given
+        Board board = Board.empty().add(new Point(0, 0));
+
+        //when
+        final var result = board.iterate();
+
+        //then
+        final var points = result.getPoints();
+        assertThat(points.size()).isEqualTo(0);
+    }
+
+    @Test
     public void shouldFindNumberOfNeighbours() {
         //given
         final var point = new Point(0, 0);

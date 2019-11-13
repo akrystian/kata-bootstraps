@@ -1,7 +1,10 @@
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Board {
     Set<Point> points = new HashSet<>();
@@ -11,6 +14,12 @@ public class Board {
     }
 
     public Board iterate() {
+        NeigbourFinder neigbourFinder = new NeigbourFinder(points);
+        final Map<Integer, Point> collect = points.stream()
+
+                .collect(Collectors.toMap(neigbourFinder::find, Function.identity()));
+        points.remove(collect.get(0));
+
         return this;
     }
 
