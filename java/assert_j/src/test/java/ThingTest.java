@@ -24,7 +24,8 @@ public class ThingTest {
         Board result = board.add(new Point(0, 0));
 
         //then
-        assertThat(result.getPoints().size()).isEqualTo(1);
-        assertThat(result.getPoints()).containsExactly(new Point(0, 0));
+        final var points = result.getPoints();
+        assertThat(points.size()).isEqualTo(1);
+        assertThat(points).containsExactly(new Point(0, 0));
     }
 }
