@@ -1,9 +1,7 @@
-
 import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Board {
@@ -15,10 +13,15 @@ public class Board {
 
     public Board iterate() {
         NeigbourFinder neigbourFinder = new NeigbourFinder(points);
-        final Map<Integer, Point> collect = points.stream()
+        final List<PointNeghbours> collect1 = points.stream()
+                .map(it -> PointNeghbours.of(it, neigbourFinder.find(it)))
+                .collect(Collectors.toList());
 
-                .collect(Collectors.toMap(neigbourFinder::find, Function.identity()));
-        points.remove(collect.get(0));
+
+        final var collect = collect1.stream().filter(it -> it.getNeghboursCount() == 0)
+                .map(PointNeghbours::getPoint)
+                .collect(Collectors.toSet());
+        points.removeAll(collect);
 
         return this;
     }
@@ -43,6 +46,28 @@ public class Board {
 
     public Set<Point> getPoints() {
         return Set.copyOf(points);
+    }
+}
+
+class PointNeghbours {
+    private final Point point;
+    private final int neghboursCount;
+
+    PointNeghbours(Point point, int neghboursCount) {
+        this.point = point;
+        this.neghboursCount = neghboursCount;
+    }
+
+    static PointNeghbours of(Point point, int neghboursCount) {
+        return new PointNeghbours(point, neghboursCount);
+    }
+
+    public Point getPoint() {
+        return point;
+    }
+
+    public int getNeghboursCount() {
+        return neghboursCount;
     }
 }
 
