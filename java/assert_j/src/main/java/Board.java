@@ -23,6 +23,7 @@ public class Board {
                 .collect(Collectors.toSet());
         points.removeAll(collect);
 
+
         return this;
     }
 

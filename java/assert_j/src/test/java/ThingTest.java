@@ -57,6 +57,23 @@ public class ThingTest {
         assertThat(points.size()).isEqualTo(0);
     }
 
+
+    @Test
+    public void shouldPersistPopulation() {
+        //given
+        Board board = Board.empty()
+                .add(new Point(0, 0))
+                .add(Point.of(1, 1))
+                .add(Point.of(1, 0))
+                .add(Point.of(0, 1));
+        //when
+        final var result = board.iterate();
+
+        //then
+        final var points = result.getPoints();
+        assertThat(points.size()).isEqualTo(4);
+    }
+
     @Test
     public void shouldFindNumberOfNeighbours() {
         //given
