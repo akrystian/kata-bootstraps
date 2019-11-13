@@ -33,7 +33,7 @@ public class Board {
     }
 
     public Set<Point> getPoints() {
-        return points;
+        return Set.copyOf(points);
     }
 }
 

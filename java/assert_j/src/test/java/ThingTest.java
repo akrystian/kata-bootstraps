@@ -18,9 +18,10 @@ public class ThingTest {
     @Test
     public void shouldAddSinglePointToBoard() {
         //given
+        final var board = Board.empty();
 
         //when
-        Board result = Board.empty().add(new Point(0, 0));
+        Board result = board.add(new Point(0, 0));
 
         //then
         assertThat(result.getPoints().size()).isEqualTo(1);
