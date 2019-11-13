@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -74,21 +75,21 @@ public class ThingTest {
         assertThat(points.size()).isEqualTo(4);
     }
 
+
     @Test
-    public void shouldPersistOscilatorPopulation() {
+    public void shouldProposeCells() {
         //given
-        Board board = Board.empty()
-                .add(new Point(0, 0))
-                .add(Point.of(0, 1))
-                .add(Point.of(0, -1));
+        final var center = Point.of(0, 0);
+        final var cellProposer = new CellProposer(center);
+
         //when
-        final var result = board.iterate();
+        final var set = new HashSet<>(cellProposer.propose());
+        set.add(center);
 
         //then
-        final var points = result.getPoints();
-        assertThat(points).containsExactly(
-                Point.of(0, 0));
+        assertThat(set.size()).isEqualTo(9);
     }
+
 
     @Test
     public void shouldDieOfoverpopulation() {

@@ -51,6 +51,30 @@ public class Board {
     }
 }
 
+class CellProposer {
+    private final Point center;
+
+    CellProposer(Point center) {
+        this.center = center;
+    }
+
+    Set<Point> propose() {
+        final int x = center.getX();
+        final int y = center.getY();
+
+        return Set.of(Point.of(x + 1, y),
+                Point.of(x - 1, y),
+                Point.of(x, y - 1),
+                Point.of(x, y + 1),
+
+                Point.of(x - 1, y - 1),
+                Point.of(x + 1, y + 1),
+                Point.of(x - 1, y + 1),
+                Point.of(x + 1, y - 1));
+    }
+
+}
+
 class PointNeghbours {
     private final Point point;
     private final int neghboursCount;
