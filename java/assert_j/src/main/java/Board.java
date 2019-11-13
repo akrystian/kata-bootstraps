@@ -26,6 +26,15 @@ public class Board {
     public int hashCode() {
         return Objects.hash(points);
     }
+
+    public Board add(Point point) {
+        points.add(point);
+        return this;
+    }
+
+    public Set<Point> getPoints() {
+        return points;
+    }
 }
 
 class Point {

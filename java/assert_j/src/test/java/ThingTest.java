@@ -14,4 +14,15 @@ public class ThingTest {
         //then
         assertThat(result).isEqualTo(Board.empty());
     }
+
+    @Test
+    public void shouldAddSinglePointToBoard() {
+        //given
+
+        //when
+        Board result = Board.empty().add(new Point(0, 0));
+
+        //then
+        assertThat(result.getPoints().size()).isEqualTo(1);
+    }
 }
