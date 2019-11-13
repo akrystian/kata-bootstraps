@@ -46,6 +46,10 @@ class Point {
         this.y = y;
     }
 
+    static Point of(int x, int y) {
+        return new Point(x, y);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,6 +62,14 @@ class Point {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }
 

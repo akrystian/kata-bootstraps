@@ -32,7 +32,7 @@ public class ThingTest {
     }
 
     @Test
-    public void shuldFindNumberOfNeighbours() {
+    public void shouldFindNumberOfNeighbours() {
         //given
         final var point = new Point(0, 0);
         final var points = Set.of(point);
@@ -41,8 +41,7 @@ public class ThingTest {
         //when
         int result = neigbourFinder.find(point);
 
-
         //then
-        assertThat(result).isEqualTo(1);
+        assertThat(result).isEqualTo(0);
     }
 }
