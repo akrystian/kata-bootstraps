@@ -18,7 +18,8 @@ public class Board {
                 .collect(Collectors.toList());
 
 
-        final var dieCells = collect1.stream().filter(it -> it.getNeghboursCount() < 2)
+        final var dieCells = collect1.stream()
+                .filter(it -> (it.getNeghboursCount() < 2 || it.getNeghboursCount() > 3))
                 .map(PointNeghbours::getPoint)
                 .collect(Collectors.toSet());
         points.removeAll(dieCells);

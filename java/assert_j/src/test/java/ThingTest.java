@@ -91,6 +91,24 @@ public class ThingTest {
     }
 
     @Test
+    public void shouldDieOfoverpopulation() {
+        //given
+        Board board = Board.empty()
+                .add(new Point(0, 0))
+                .add(Point.of(0, 1))
+                .add(Point.of(1, 0))
+                .add(Point.of(-1, 0))
+                .add(Point.of(0, -1));
+        //when
+        final var result = board.iterate();
+
+        //then
+        final var points = result.getPoints();
+        assertThat(points).doesNotContain(
+                Point.of(0, 0));
+    }
+
+    @Test
     public void shouldFindNumberOfNeighbours() {
         //given
         final var point = new Point(0, 0);
