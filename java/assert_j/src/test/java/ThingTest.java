@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ThingTest {
@@ -27,5 +29,20 @@ public class ThingTest {
         final var points = result.getPoints();
         assertThat(points.size()).isEqualTo(1);
         assertThat(points).containsExactly(new Point(0, 0));
+    }
+
+    @Test
+    public void shuldFindNumberOfNeighbours() {
+        //given
+        final var point = new Point(0, 0);
+        final var points = Set.of(point);
+        final var neigbourFinder = new NeigbourFinder(points);
+
+        //when
+        int result = neigbourFinder.find(point);
+
+
+        //then
+        assertThat(result).isEqualTo(1);
     }
 }
