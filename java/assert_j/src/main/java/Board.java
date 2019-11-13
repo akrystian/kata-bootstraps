@@ -18,10 +18,10 @@ public class Board {
                 .collect(Collectors.toList());
 
 
-        final var collect = collect1.stream().filter(it -> it.getNeghboursCount() == 0)
+        final var dieCells = collect1.stream().filter(it -> it.getNeghboursCount() < 2)
                 .map(PointNeghbours::getPoint)
                 .collect(Collectors.toSet());
-        points.removeAll(collect);
+        points.removeAll(dieCells);
 
 
         return this;
@@ -105,6 +105,13 @@ class Point {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" + x +
+                "," + y +
+                '}';
     }
 }
 
