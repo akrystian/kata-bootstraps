@@ -25,5 +25,6 @@ public class ThingTest {
 
         //then
         assertThat(result.getPoints().size()).isEqualTo(1);
+        assertThat(result.getPoints()).containsExactly(new Point(0, 0));
     }
 }
