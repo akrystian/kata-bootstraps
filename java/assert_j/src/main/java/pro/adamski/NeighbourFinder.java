@@ -1,9 +1,11 @@
+package pro.adamski;
+
 import java.util.Set;
 
-public class NeigbourFinder {
+public class NeighbourFinder {
     private final Set<Point> points;
 
-    public NeigbourFinder(final Set<Point> points) {
+    public NeighbourFinder(final Set<Point> points) {
         this.points = Set.copyOf(points);
     }
 

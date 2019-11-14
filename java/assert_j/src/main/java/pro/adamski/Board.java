@@ -1,31 +1,52 @@
+package pro.adamski;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.util.Collections.emptySet;
+
 public class Board {
-    Set<Point> points = new HashSet<>();
+    Set<Point> points;
+
+    private Board(Set<Point> points) {
+        this.points = points;
+    }
 
     public static Board empty() {
-        return new Board();
+        return new Board(emptySet());
     }
 
     public Board iterate() {
-        NeigbourFinder neigbourFinder = new NeigbourFinder(points);
-        final List<PointNeghbours> collect1 = points.stream()
-                .map(it -> PointNeghbours.of(it, neigbourFinder.find(it)))
-                .collect(Collectors.toList());
+        NeighbourFinder neighbourFinder = new NeighbourFinder(points);
 
+        final Set<Point> dieCells = prepareDeadCells(neighbourFinder);
 
-        final var dieCells = collect1.stream()
+        final Set<Point> newCells = prepareBirthCells(neighbourFinder);
+
+        final HashSet<Point> newPoints = new HashSet<>(this.points);
+        newPoints.removeAll(dieCells);
+        newPoints.addAll(newCells);
+        return new Board(newPoints);
+    }
+
+    private Set<Point> prepareBirthCells(NeighbourFinder neighbourFinder) {
+        return points.stream().map(CellProposer::new)
+                .flatMap(it -> it.propose().stream())
+                .filter(it -> !points.contains(it))
+                .map(it -> PointNeghbours.of(it, neighbourFinder.find(it)))
+                .filter(it -> (it.getNeghboursCount() == 3))
+                .map(PointNeghbours::getPoint)
+                .collect(Collectors.toSet());
+    }
+
+    private Set<Point> prepareDeadCells(NeighbourFinder neighbourFinder) {
+        return points.stream()
+                .map(it -> PointNeghbours.of(it, neighbourFinder.find(it)))
                 .filter(it -> (it.getNeghboursCount() < 2 || it.getNeghboursCount() > 3))
                 .map(PointNeghbours::getPoint)
                 .collect(Collectors.toSet());
-        points.removeAll(dieCells);
-
-
-        return this;
     }
 
     @Override
@@ -42,8 +63,9 @@ public class Board {
     }
 
     public Board add(Point point) {
-        points.add(point);
-        return this;
+        final HashSet<Point> newPoints = new HashSet<>(this.points);
+        newPoints.add(point);
+        return new Board(newPoints);
     }
 
     public Set<Point> getPoints() {
